@@ -1,17 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
   User: jiee
-  Date: 2019-03-05
-  Time: 22:15
+  Date: 2019-03-06
+  Time: 22:29
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/findAll">查看所有商品</a>
-
+    <h1>${msg}</h1>
 </body>
 </html>
