@@ -20,7 +20,7 @@
             <td colspan="7">没有找到商品</td>
         </tr>
     </c:if>
-    <c:if test="${!empty list}"  >
+    <c:if test="${!empty list}">
         <c:forEach items="${list}" var="pro">
             <tr>
                 <td>${pro.pid}</td>

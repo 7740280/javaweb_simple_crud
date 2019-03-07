@@ -9,9 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.PseudoColumnUsage;
-import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/product")
@@ -25,8 +22,12 @@ public class ProductServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         String method = request.getParameter("method");
+        System.out.println(method);
         if ("findAll".equals(method)) {
             findAll(request, response);
+        } else if ("addPro".equals(method)) {
+            System.out.println();
+            addPro(request, response);
         }
     }
 
@@ -48,6 +49,17 @@ public class ProductServlet extends HttpServlet
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+        }
+    }
+
+    public void addPro(HttpServletRequest request, HttpServletResponse response)
+    {
+        try {
+            request.getRequestDispatcher("/add.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -11,7 +11,9 @@
     <title>$Title$</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/findAll">查看所有商品</a>
+<a href="${pageContext.request.contextPath}/product?method=findAll">查看所有商品</a>
+<br>
+<a href="${pageContext.request.contextPath}/product?method=addPro">添加商品</a>
 
 </body>
 </html>
