@@ -2,7 +2,7 @@
 <c3p0-config>
   <default-config>
     <property name="driverClass">com.mysql.jdbc.Driver</property>
-    <property name="jdbcUrl">jdbc:mysql://192.168.10.10:3306/jdbc?useSSL=false</property>
+    <property name="jdbcUrl">jdbc:mysql://192.168.10.10:3306/jdbc?useSSL=false&amp;characterEncoding=utf-8</property>
     <property name="user">homestead</property>
     <property name="password">secret</property>
 

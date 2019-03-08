@@ -13,4 +13,28 @@ public class ProductService
         ProductDao productDao = new ProductDao();
         return productDao.findAll();
     }
+
+    public int add(Product product) throws SQLException
+    {
+        ProductDao productDao = new ProductDao();
+        return productDao.add(product);
+    }
+
+    public Product update(String id) throws SQLException
+    {
+        ProductDao productDao = new ProductDao();
+        return productDao.update(id);
+    }
+
+    public int edit(Product product) throws SQLException
+    {
+        ProductDao productDao = new ProductDao();
+        return productDao.edit(product);
+    }
+
+    public int del(String id ) throws SQLException
+    {
+        ProductDao productDao = new ProductDao();
+        return productDao.del(id);
+    }
 }

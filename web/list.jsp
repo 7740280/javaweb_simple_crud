@@ -14,6 +14,8 @@
         <th>展示图</th>
         <th>参数</th>
         <th>商品描述</th>
+        <th>编辑</th>
+        <th>删除</th>
     </tr>
     <c:if test="${empty list}">
         <tr>
@@ -30,6 +32,8 @@
                 <td>${pro.pimage}</td>
                 <td>${pro.pdate}</td>
                 <td>${pro.pdesc}</td>
+                <td><a href="${pageContext.request.contextPath}/product?method=udp&id=${pro.pid}">编辑</a></td>
+                <td><a href="${pageContext.request.contextPath}/product?method=del&id=${pro.pid}">删除</a></td>
             </tr>
         </c:forEach>
     </c:if>

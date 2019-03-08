@@ -79,4 +79,18 @@ public class Product
     {
         this.pdesc = pdesc;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Product{" +
+                "pid='" + pid + '\'' +
+                ", pname='" + pname + '\'' +
+                ", market_price=" + market_price +
+                ", shop_price=" + shop_price +
+                ", pimage='" + pimage + '\'' +
+                ", pdate='" + pdate + '\'' +
+                ", pdesc='" + pdesc + '\'' +
+                '}';
+    }
 }
