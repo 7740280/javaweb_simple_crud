@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,10 @@ public class ProductServlet extends HttpServlet
             edit(request, response);
         } else if ("del".equals(method)) {
             del(request, response);
+        } else if ("checkDel".equals(method)) {
+            checkDel(request, response);
+        } else if ("search".equals(method)) {
+            search(request, response);
         }
     }
 
@@ -159,7 +164,7 @@ public class ProductServlet extends HttpServlet
             String         id             = request.getParameter("id");
             ProductService productService = new ProductService();
             productService.del(id);
-            request.getRequestDispatcher("/product?method=findAll").forward(request,response);
+            request.getRequestDispatcher("/product?method=findAll").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("msg", "删除失败");
@@ -171,5 +176,50 @@ public class ProductServlet extends HttpServlet
                 e1.printStackTrace();
             }
         }
+    }
+
+    public void checkDel(HttpServletRequest request, HttpServletResponse response)
+    {
+        try {
+            String[]       ids = request.getParameterValues("id");
+            ProductService ps  = new ProductService();
+            ps.checkDel(ids);
+            request.getRequestDispatcher("/product?method=findAll").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("msg", "删除错误");
+        }
+    }
+
+    public void search(HttpServletRequest request, HttpServletResponse response)
+    {
+        try {
+            String pname = request.getParameter("pname");
+            String pid   = request.getParameter("pid");
+
+            ProductService ps = new ProductService();
+            List<Product>  search = ps.search(pname, pid);
+            request.setAttribute("list",search);
+            try {
+                request.getRequestDispatcher("list.jsp").forward(request,response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("msg","查询错误");
+            try {
+                request.getRequestDispatcher("/error.jsp").forward(request,response);
+            } catch (ServletException e1) {
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+
+
     }
 }

@@ -32,9 +32,21 @@ public class ProductService
         return productDao.edit(product);
     }
 
-    public int del(String id ) throws SQLException
+    public int del(String id) throws SQLException
     {
         ProductDao productDao = new ProductDao();
         return productDao.del(id);
+    }
+
+    public int checkDel(String[] ids) throws SQLException
+    {
+        ProductDao pd = new ProductDao();
+        return pd.checkDel(ids);
+    }
+
+    public List<Product> search(String pname, String pid) throws SQLException
+    {
+        ProductDao pd = new ProductDao();
+        return pd.search(pname, pid);
     }
 }

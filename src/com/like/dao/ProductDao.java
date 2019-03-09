@@ -8,6 +8,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.taglibs.standard.tag.common.sql.DataSourceUtil;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDao
@@ -48,5 +49,37 @@ public class ProductDao
         QueryRunner queryRunner = new QueryRunner(DataSourceUtils.getDataSource());
         String      sql         = "delete from product where pid = ?";
         return queryRunner.update(sql, id);
+    }
+
+    public int checkDel(String[] ids) throws SQLException
+    {
+        QueryRunner queryRunner = new QueryRunner(DataSourceUtils.getDataSource());
+        for (String id : ids) {
+            String sql = "delete from product where pid = ?";
+            queryRunner.update(sql, id);
+        }
+
+        return 1;
+    }
+
+
+    public List<Product> search(String pname, String pid) throws SQLException
+    {
+        QueryRunner qr  = new QueryRunner(DataSourceUtils.getDataSource());
+        String      sql = "select * from product where 1 = 1";
+
+        List<String> params = new ArrayList<>();
+
+        if (!"".equals(pname)) {
+            sql += " and pname like ?";
+            params.add("%" + pname + "%");
+        }
+
+        if (!"".equals(pid)) {
+            sql += " and pid like ? ";
+            params.add("%" + pid + "%");
+        }
+
+        return qr.query(sql, new BeanListHandler<Product>(Product.class), params.toArray());
     }
 }
